@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CharactersTableViewCell: UITableViewCell {
     
@@ -23,7 +24,6 @@ class CharactersTableViewCell: UITableViewCell {
     
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Ricky and Morty"
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
         label.font = .systemFont(ofSize: 18, weight: .regular)
@@ -32,8 +32,6 @@ class CharactersTableViewCell: UITableViewCell {
     
     private let episodesLabel: UILabel = {
        let label = UILabel()
-        label.text = "3 episodes"
-//        label.textColor = UIColor(named: "main")
         label.numberOfLines = 0
         label.font = .systemFont(ofSize: 14, weight: .regular)
         return label
@@ -61,8 +59,6 @@ class CharactersTableViewCell: UITableViewCell {
         characterImageView.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview().inset(10)
             make.leading.equalToSuperview().inset(20)
-//            make.trailing.equalTo(nameLabel.snp.leading)
-//            make.height.equalToSuperview().multipliedBy(0.8)
             make.width.equalTo(90)
             make.height.equalTo(100)
         }
@@ -70,8 +66,6 @@ class CharactersTableViewCell: UITableViewCell {
         nameLabel.snp.makeConstraints { make in
             make.leading.equalTo(characterImageView.snp.trailing).offset(10)
             make.top.equalTo(characterImageView.snp.top)
-//            make.bottom.equalTo(priceLabel.snp.top)
-//            make.trailing.equalToSuperview().inset(15)
         }
         
         episodesLabel.snp.makeConstraints { make in
@@ -80,10 +74,10 @@ class CharactersTableViewCell: UITableViewCell {
         }
     }
     
-    func configure(name: String, price: String, imageName: String) {
-        characterImageView.image = UIImage(named: imageName)
-        nameLabel.text = name
-        episodesLabel.text = price
+    func configure(with model: Characters) {
+        characterImageView.sd_setImage(with: URL(string: model.image), completed: nil)
+        nameLabel.text = model.name
+        episodesLabel.text = String(model.episode.count) + " episodes"
     }
 
 }

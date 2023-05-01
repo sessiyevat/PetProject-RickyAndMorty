@@ -323,8 +323,7 @@ public final class Constraint {
                 let updateLayoutAttribute = (updateLayoutConstraint.secondAttribute == .notAnAttribute) ? updateLayoutConstraint.firstAttribute : updateLayoutConstraint.secondAttribute
                 updateLayoutConstraint.constant = self.constant.constraintConstantTargetValueFor(layoutAttribute: updateLayoutAttribute)
             }
-        } else {
-            NSLayoutConstraint.activate(layoutConstraints)
+        } else {            NSLayoutConstraint.activate(layoutConstraints)
             item.add(constraints: [self])
         }
     }
