@@ -49,6 +49,18 @@ class CharactersTableViewCell: UITableViewCell {
         fatalError()
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 5, left: 15, bottom: 5, right: 15))
+        
+        contentView.layer.cornerRadius = 8
+        contentView.layer.masksToBounds = true
+        contentView.layer.borderWidth = 1
+        
+        contentView.layer.borderColor = UIColor(named: "yellow")?.cgColor
+    }
+    
     // MARK: - UI Setup
 
     private func setupUI() {
@@ -74,10 +86,16 @@ class CharactersTableViewCell: UITableViewCell {
         }
     }
     
-    func configure(with model: Characters) {
+    func configure(with model: CharacterCellViewModel) {
         characterImageView.sd_setImage(with: URL(string: model.image), completed: nil)
         nameLabel.text = model.name
         episodesLabel.text = String(model.episode.count) + " episodes"
+        
+        if model.status == "Alive" {
+            contentView.backgroundColor = UIColor(named: "main")?.withAlphaComponent(0.5)
+        } else {
+            contentView.backgroundColor = UIColor(named: "pink")?.withAlphaComponent(0.5)
+        }
     }
 
 }
