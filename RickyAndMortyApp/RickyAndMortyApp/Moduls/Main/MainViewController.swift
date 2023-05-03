@@ -27,7 +27,10 @@ class MainViewController: UITabBarController, CharactersViewProtocol{
     
     private func setUpViews(){
         let vc1 = CharactersAssembly.createModel()
-        let vc2 = EpisodesViewController()
+        
+        let episodesRouter = EpisodesRouter.start()
+        let vc2 = episodesRouter.entry
+        
         let vc3 = LocationsViewController()
 
         let logo = UIImage(named: "logo")
@@ -42,7 +45,7 @@ class MainViewController: UITabBarController, CharactersViewProtocol{
         changeRadiusOfTabbar()
         
         let nav1 = UINavigationController(rootViewController: vc1)
-        let nav2 = UINavigationController(rootViewController: vc2)
+        let nav2 = UINavigationController(rootViewController: vc2 ?? UIViewController())
         let nav3 = UINavigationController(rootViewController: vc3)
         
         nav1.tabBarItem = UITabBarItem(title: "Characters", image: UIImage(systemName: "person.circle"), tag: 1)
