@@ -8,8 +8,6 @@
 import UIKit
 import SnapKit
 
-
-
 class CharactersViewController: UIViewController, CharactersViewProtocol, UITableViewDelegate, UITableViewDataSource {
     
     lazy var presenter = CharactersPresenter(view: self)
@@ -36,7 +34,6 @@ class CharactersViewController: UIViewController, CharactersViewProtocol, UITabl
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        // navcontroller
         charactersTableView.frame = view.bounds
 //        charactersTableView.contentInset = UIEdgeInsets(top: -54, left: 0, bottom: 0, right: 0);
         charactersTableView.separatorStyle = .none
@@ -47,14 +44,15 @@ class CharactersViewController: UIViewController, CharactersViewProtocol, UITabl
             print("error")
             return
         }
-        charactersTableView.reloadData()
+        self.characters = characters
+        self.charactersTableView.reloadData()
     }
     
-    func showCharacter(character: Characters) {
-        let vc = CharacterDetailsViewController(character: character)
+    func showCharacter(character: Character) {
+        let vc = CharacterDetailsAssembly.createModel(with: character)
         vc.navigationItem.largeTitleDisplayMode = .never
         DispatchQueue.main.async {
-            navigationController?.pushViewController(vc, animated: true)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
@@ -77,11 +75,7 @@ class CharactersViewController: UIViewController, CharactersViewProtocol, UITabl
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-//        let character = characters[indexPath.row]
         presenter.cellDidTaped(at: indexPath)
-//        let vc = CharacterDetailsViewController(character: character)
-//        vc.navigationItem.largeTitleDisplayMode = .never
-//        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

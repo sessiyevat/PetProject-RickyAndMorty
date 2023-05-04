@@ -11,6 +11,7 @@ protocol EpisodesInteractorProtocol {
     var presenter: EpisodesPresenterProtocol? { get set }
     
     func getEpisodes()
+    func getCharacter(withURL: String)
 }
 
 class EpisodesInteractor: EpisodesInteractorProtocol {
@@ -22,6 +23,17 @@ class EpisodesInteractor: EpisodesInteractorProtocol {
             case .success(let episodes):
                 self.presenter?.interactorFetchEpisodes(with: episodes.results)
             case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func getCharacter(withURL url: String) {
+        NetworkService.shared.getCharacter(characterURL: url) { result in
+            switch result {
+            case .success(let character):
+                self.presenter?.updateViewModel(character: character)
+            case.failure(let error):
                 print(error.localizedDescription)
             }
         }

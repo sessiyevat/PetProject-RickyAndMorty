@@ -15,7 +15,7 @@ struct CharacterCellViewModel {
     let species: String
     let gender: String
     
-    init(result: Characters){
+    init(result: Character){
         self.episode = result.episode
         self.image = result.image
         self.name = result.name

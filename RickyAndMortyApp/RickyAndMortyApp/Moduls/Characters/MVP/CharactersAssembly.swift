@@ -9,7 +9,6 @@ import Foundation
 
 class CharactersAssembly {
     static func createModel() -> CharactersViewController {
-//        let router = CharactersRouter
         let viewController = CharactersViewController()
         
         let presenter = CharactersPresenter(view: viewController)
@@ -17,4 +16,13 @@ class CharactersAssembly {
         viewController.presenter = presenter
         return viewController
     }
+    
+//    static func createModel(with viewModel: [CharacterCellViewModel]) -> CharactersViewController {
+//        let viewController = CharactersViewController()
+//        viewController.characters = viewModel
+//        let presenter = CharactersPresenter(view: viewController)
+//
+//        viewController.presenter = presenter
+//        return viewController
+//    }
 }

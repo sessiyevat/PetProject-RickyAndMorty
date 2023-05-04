@@ -13,7 +13,6 @@ class MainViewController: UITabBarController {
         super.init(nibName: nil, bundle: nil)
 //        navigationController?.isNavigationBarHidden = false
         self.setUpViews()
-//        setViewControllers([nav1, nav2, nav3], animated: false)
     }
     
     required init?(coder: NSCoder) {
@@ -22,7 +21,6 @@ class MainViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setUpViews()
     }
     
     override func viewDidLayoutSubviews() {

@@ -9,11 +9,9 @@ import Foundation
 import UIKit
 
 class CharactersPresenter: CharactersPresenterProtocol {
-
-//    private var characters = [Characters]()
     
     weak var view: CharactersViewProtocol?
-    var characters: [Characters] = []
+    var characters: [Character] = []
     
     init(view: CharactersViewProtocol? = nil) {
         self.view = view
@@ -28,7 +26,6 @@ class CharactersPresenter: CharactersPresenterProtocol {
                     return CharacterCellViewModel(result: $0)
                     }
                 )
-//                self?.view?.updateTableView(viewModel: viewModel)
                 self?.updateTableView(viewModel: viewModel)
             case .failure(let error):
                 print(error.localizedDescription)
@@ -36,8 +33,8 @@ class CharactersPresenter: CharactersPresenterProtocol {
             }
         }
     }
+    
     private func updateTableView(viewModel: [CharacterCellViewModel]?) {
-        
         DispatchQueue.main.async { [weak self] in
             self?.view?.updateTableView(viewModel: viewModel)
         }

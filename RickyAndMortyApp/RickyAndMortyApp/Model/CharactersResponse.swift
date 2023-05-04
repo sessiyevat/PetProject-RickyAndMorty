@@ -8,10 +8,10 @@
 import Foundation
 
 struct CharactersResponse: Codable {
-    let results: [Characters]
+    let results: [Character]
 }
 
-struct Characters: Codable {
+struct Character: Codable {
     let episode: [String]
     let gender: String
     let image: String

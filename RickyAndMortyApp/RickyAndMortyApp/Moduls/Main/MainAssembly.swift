@@ -10,12 +10,7 @@ import UIKit
 
 struct MainAssembly {
     static func createModel() -> MainViewController {
-//        let router = CharactersRouter
         let viewController = MainViewController()
-        
-//        let presenter = CharactersPresenter(view: viewController)
-        
-//        viewController.presenter = presenter
         return viewController
     }
 }

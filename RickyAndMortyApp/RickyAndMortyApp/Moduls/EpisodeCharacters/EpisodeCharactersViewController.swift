@@ -7,6 +7,13 @@
 
 import UIKit
 
+protocol EpisodeCharactersViewProtocol {
+    var presenter: EpisodesPresenterProtocol? { get set }
+    
+//    func update(with episodes: [Episode])
+//    func showCharacters(characters: [CharacterCellViewModel])
+}
+
 class EpisodeCharactersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     private var characters = [CharacterCellViewModel]()
@@ -19,13 +26,13 @@ class EpisodeCharactersViewController: UIViewController, UITableViewDelegate, UI
         return table
     } ()
     
-    init(characters: [CharacterCellViewModel]) {
-        super.init(nibName: nil, bundle: nil)
-        self.characters = characters
-//        DispatchQueue.main.async {
-//            self.charactersTableView.reloadData()
-//        }
-    }
+//    init(characters: [CharacterCellViewModel]) {
+//        super.init(nibName: nil, bundle: nil)
+//        self.characters = characters
+////        DispatchQueue.main.async {
+////            self.charactersTableView.reloadData()
+////        }
+//    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -61,9 +68,9 @@ class EpisodeCharactersViewController: UIViewController, UITableViewDelegate, UI
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let character = characters[indexPath.row]
-        let vc = CharacterDetailsViewController(character: character)
-        vc.navigationItem.largeTitleDisplayMode = .never
-        navigationController?.pushViewController(vc, animated: true)
+//        let character = characters[indexPath.row]
+//        let vc = CharacterDetailsViewController(character: character)
+//        vc.navigationItem.largeTitleDisplayMode = .never
+//        navigationController?.pushViewController(vc, animated: true)
     }
 }

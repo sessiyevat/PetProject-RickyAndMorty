@@ -45,7 +45,7 @@ class NetworkService {
         task.resume()
     }
     
-    public func getCharacter(characterURL: String, completion: @escaping (Result<Characters, Error>) -> Void ) {
+    public func getCharacter(characterURL: String, completion: @escaping (Result<Character, Error>) -> Void ) {
         guard let url = URL(string: characterURL) else { return }
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _ , error in
             guard let data = data, error == nil else {
@@ -53,7 +53,7 @@ class NetworkService {
             }
             
             do {
-                let results = try JSONDecoder().decode(Characters.self, from: data)
+                let results = try JSONDecoder().decode(Character.self, from: data)
 //                print(results)
                 completion(.success(results))
             } catch {

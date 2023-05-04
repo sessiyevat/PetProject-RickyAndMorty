@@ -12,14 +12,13 @@ protocol EpisodesViewProtocol {
     var presenter: EpisodesPresenterProtocol? { get set }
     
     func update(with episodes: [Episode])
-    
+    func showCharacters(characters: [CharacterCellViewModel])
 }
 
 class EpisodesViewController: UIViewController, EpisodesViewProtocol, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var presenter: EpisodesPresenterProtocol?
     var episodes: [Episode] = []
-    
     
     private let collectionView: UICollectionView = UICollectionView(
         frame: .zero,
@@ -64,6 +63,13 @@ class EpisodesViewController: UIViewController, EpisodesViewProtocol, UICollecti
             self.collectionView.reloadData()
         }
     }
+    
+    func showCharacters(characters: [CharacterCellViewModel]) {
+//        let vc = CharactersAssembly.createModel(with: characters)
+//        let vc = EpisodeCharactersViewController(characters: characters)
+//        vc.navigationItem.largeTitleDisplayMode = .never
+//        navigationController?.pushViewController(vc, animated: true)
+    }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return episodes.count
@@ -80,25 +86,7 @@ class EpisodesViewController: UIViewController, EpisodesViewProtocol, UICollecti
         collectionView.deselectItem(at: indexPath, animated: true)
         
         let characters = episodes[indexPath.row].characters
-//        print(episodes[indexPath.row].name)
-//        print(characters)
-        var viewModels: [CharacterCellViewModel] = []
         
-        for character in characters {
-            NetworkService.shared.getCharacter(characterURL: character) { result in
-                switch result {
-                case .success(let character):
-                    let viewModel = CharacterCellViewModel(result: character)
-                    viewModels.append(viewModel)
-//                    print(episodeCharacters)
-                case.failure(let error):
-                    print(error.localizedDescription)
-                }
-            }
-        }
-        
-        let vc = EpisodeCharactersViewController(characters: viewModels)
-        vc.navigationItem.largeTitleDisplayMode = .never
-        navigationController?.pushViewController(vc, animated: true)
+        presenter?.cellDidTaped(at: characters)        
     }
 }

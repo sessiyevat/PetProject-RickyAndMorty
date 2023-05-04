@@ -9,9 +9,10 @@ import UIKit
 import SDWebImage
 import SnapKit
 
-class CharacterDetailsViewController: UIViewController {
+class CharacterDetailsViewController: UIViewController, CharacterDetailsViewProtocol{
     
-    var character: CharacterCellViewModel
+    var character: CharacterDetailsViewModel?
+    lazy var presenter = CharacterDetailsPresenter(view: self)
     
     private let imageView: UIImageView = {
        let imageView = UIImageView()
@@ -61,24 +62,21 @@ class CharacterDetailsViewController: UIViewController {
         return label
     }()
     
-    init(character: CharacterCellViewModel){
-        self.character = character
-        super.init(nibName: nil, bundle: nil)
-
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        title = character.name
+        
+        presenter.viewDidLoad()
+    }
+    
+    func updateView(with viewModel: CharacterDetailsViewModel?) {
+        guard let character = viewModel else { return }
+        self.character = character
         setupUI()
     }
     
     func setupUI() {
+        title = character?.name
         view.addSubview(imageView)
         view.addSubview(statusLabel)
         view.addSubview(characterStatusLabel)
@@ -87,10 +85,10 @@ class CharacterDetailsViewController: UIViewController {
         view.addSubview(genderLabel)
         view.addSubview(characterGenderLabel)
         
-        imageView.sd_setImage(with: URL(string: character.image))
-        characterStatusLabel.text = character.status
-        characterSpeciesLabel.text = character.species
-        characterGenderLabel.text = character.gender
+        imageView.sd_setImage(with: URL(string: character?.image ?? ""))
+        characterStatusLabel.text = character?.status
+        characterSpeciesLabel.text = character?.species
+        characterGenderLabel.text = character?.gender
         
         imageView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)

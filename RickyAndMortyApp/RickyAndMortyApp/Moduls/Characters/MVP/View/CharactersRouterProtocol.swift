@@ -8,5 +8,5 @@
 import Foundation
 
 protocol CharactersRouterProtocol {
-    func showCharacter(character: Characters)
+    func showCharacter(character: Character)
 }

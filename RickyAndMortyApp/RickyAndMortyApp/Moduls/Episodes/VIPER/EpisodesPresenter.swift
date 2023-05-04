@@ -13,6 +13,8 @@ protocol EpisodesPresenterProtocol {
     var view: EpisodesViewProtocol? { get set }
     
     func interactorFetchEpisodes(with episodes: [Episode])
+    func cellDidTaped(at characters: [String])
+    func updateViewModel(character: Character)
 }
 
 class EpisodesPresenter: EpisodesPresenterProtocol {
@@ -25,8 +27,23 @@ class EpisodesPresenter: EpisodesPresenterProtocol {
     }
     
     var view: EpisodesViewProtocol?
+    var viewModel: [CharacterCellViewModel] = []
     
     func interactorFetchEpisodes(with episodes: [Episode]) {
         view?.update(with: episodes)
+    }
+    
+    func cellDidTaped(at characters: [String]){
+        
+        for character in characters {
+            interactor?.getCharacter(withURL: character)
+        }
+        
+        view?.showCharacters(characters: viewModel)
+    }
+    
+    func updateViewModel(character: Character){
+        let model = CharacterCellViewModel(result: character)
+        viewModel.append(model)
     }
 }
