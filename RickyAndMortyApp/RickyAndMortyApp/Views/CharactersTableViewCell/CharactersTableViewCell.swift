@@ -12,6 +12,8 @@ class CharactersTableViewCell: UITableViewCell {
     
     static let identifier = "CharactersTableViewCell"
     
+    static var cellHeight: CGFloat = 120
+    
     // MARK: - UI Components
     
     private var characterImageView: UIImageView = {
@@ -93,8 +95,10 @@ class CharactersTableViewCell: UITableViewCell {
         
         if model.status == "Alive" {
             contentView.backgroundColor = UIColor(named: "main")?.withAlphaComponent(0.5)
-        } else {
+        } else if model.status == "Dead"{
             contentView.backgroundColor = UIColor(named: "pink")?.withAlphaComponent(0.5)
+        } else {
+            contentView.backgroundColor = UIColor(named: "yellow")?.withAlphaComponent(0.5)
         }
     }
 

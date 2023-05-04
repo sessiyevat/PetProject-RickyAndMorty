@@ -7,17 +7,22 @@
 
 import UIKit
 
-class MainViewController: UITabBarController, CharactersViewProtocol{
-    func updateTableView(viewModel: [CharacterCellViewModel]) {
+class MainViewController: UITabBarController {
+    
+    init() {
+        super.init(nibName: nil, bundle: nil)
+//        navigationController?.isNavigationBarHidden = false
+        self.setUpViews()
+//        setViewControllers([nav1, nav2, nav3], animated: false)
     }
     
-    var presenter: CharactersPresenterProtocol!
-    
-    /// init ?
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpViews()
+//        setUpViews()
     }
     
     override func viewDidLayoutSubviews() {

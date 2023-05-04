@@ -8,6 +8,8 @@
 import UIKit
 import SnapKit
 
+
+
 class CharactersViewController: UIViewController, CharactersViewProtocol, UITableViewDelegate, UITableViewDataSource {
     
     lazy var presenter = CharactersPresenter(view: self)
@@ -21,36 +23,39 @@ class CharactersViewController: UIViewController, CharactersViewProtocol, UITabl
         return table
     } ()
 
+    override func loadView() {
+        super.loadView()
+        view.addSubview(charactersTableView)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(charactersTableView)
-        
-        NetworkService.shared.getAllCharacters { result in
-            switch result {
-            case .success(let characters):
-                let viewModel = characters.results.compactMap({ return CharacterCellViewModel(
-                    episode: $0.episode, image: $0.image, name: $0.name, status: $0.status) })
-                self.updateTableView(viewModel: viewModel)
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
-    func updateTableView(viewModel: [CharacterCellViewModel]){
-        characters = viewModel
-        
-        DispatchQueue.main.async { [weak self] in
-            self?.charactersTableView.reloadData()
-        }
+        presenter.viewDidLoad()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        // navcontroller
         charactersTableView.frame = view.bounds
-        charactersTableView.contentInset = UIEdgeInsets(top: -54, left: 0, bottom: 0, right: 0);
+//        charactersTableView.contentInset = UIEdgeInsets(top: -54, left: 0, bottom: 0, right: 0);
         charactersTableView.separatorStyle = .none
+    }
+    
+    func updateTableView(viewModel: [CharacterCellViewModel]?){
+        guard let characters = viewModel else {
+            print("error")
+            return
+        }
+        charactersTableView.reloadData()
+    }
+    
+    func showCharacter(character: Characters) {
+        let vc = CharacterDetailsViewController(character: character)
+        vc.navigationItem.largeTitleDisplayMode = .never
+        DispatchQueue.main.async {
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -66,16 +71,17 @@ class CharactersViewController: UIViewController, CharactersViewProtocol, UITabl
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return CharactersTableViewCell.cellHeight
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let character = characters[indexPath.row]
-        let vc = CharacterDetailsViewController(character: character)
-        vc.navigationItem.largeTitleDisplayMode = .never
-        navigationController?.pushViewController(vc, animated: true)
+//        let character = characters[indexPath.row]
+        presenter.cellDidTaped(at: indexPath)
+//        let vc = CharacterDetailsViewController(character: character)
+//        vc.navigationItem.largeTitleDisplayMode = .never
+//        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

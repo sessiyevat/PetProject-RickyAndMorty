@@ -75,4 +75,30 @@ class EpisodesViewController: UIViewController, EpisodesViewProtocol, UICollecti
         cell.configure(with: episodes[indexPath.row])
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        
+        let characters = episodes[indexPath.row].characters
+//        print(episodes[indexPath.row].name)
+//        print(characters)
+        var viewModels: [CharacterCellViewModel] = []
+        
+        for character in characters {
+            NetworkService.shared.getCharacter(characterURL: character) { result in
+                switch result {
+                case .success(let character):
+                    let viewModel = CharacterCellViewModel(result: character)
+                    viewModels.append(viewModel)
+//                    print(episodeCharacters)
+                case.failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
+        
+        let vc = EpisodeCharactersViewController(characters: viewModels)
+        vc.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }

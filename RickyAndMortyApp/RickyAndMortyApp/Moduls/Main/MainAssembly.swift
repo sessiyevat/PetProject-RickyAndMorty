@@ -13,9 +13,9 @@ struct MainAssembly {
 //        let router = CharactersRouter
         let viewController = MainViewController()
         
-        let presenter = CharactersPresenter(view: viewController)
+//        let presenter = CharactersPresenter(view: viewController)
         
-        viewController.presenter = presenter
+//        viewController.presenter = presenter
         return viewController
     }
 }
