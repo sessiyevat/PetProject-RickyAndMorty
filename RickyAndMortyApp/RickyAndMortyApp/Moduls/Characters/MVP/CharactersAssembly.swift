@@ -17,12 +17,12 @@ class CharactersAssembly {
         return viewController
     }
     
-//    static func createModel(with viewModel: [CharacterCellViewModel]) -> CharactersViewController {
-//        let viewController = CharactersViewController()
-//        viewController.characters = viewModel
-//        let presenter = CharactersPresenter(view: viewController)
-//
-//        viewController.presenter = presenter
-//        return viewController
-//    }
+    static func createModel(with characters: [Character]) -> CharactersViewController {
+        let viewController = CharactersViewController()
+
+        let presenter = CharactersPresenter(view: viewController, characters: characters)
+
+        viewController.presenter = presenter
+        return viewController
+    }
 }

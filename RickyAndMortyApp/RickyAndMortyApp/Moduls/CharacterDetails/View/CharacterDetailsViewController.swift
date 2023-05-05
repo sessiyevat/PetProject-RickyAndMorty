@@ -12,7 +12,7 @@ import SnapKit
 class CharacterDetailsViewController: UIViewController, CharacterDetailsViewProtocol{
     
     var character: CharacterDetailsViewModel?
-    lazy var presenter = CharacterDetailsPresenter(view: self)
+    var presenter: CharacterDetailsPresenterProtocol!
     
     private let imageView: UIImageView = {
        let imageView = UIImageView()
@@ -62,6 +62,11 @@ class CharacterDetailsViewController: UIViewController, CharacterDetailsViewProt
         return label
     }()
     
+    override func loadView() {
+        super.loadView()
+        setupUI()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -72,7 +77,11 @@ class CharacterDetailsViewController: UIViewController, CharacterDetailsViewProt
     func updateView(with viewModel: CharacterDetailsViewModel?) {
         guard let character = viewModel else { return }
         self.character = character
-        setupUI()
+        
+        imageView.sd_setImage(with: URL(string: character.image ?? ""))
+        characterStatusLabel.text = character.status
+        characterSpeciesLabel.text = character.species
+        characterGenderLabel.text = character.gender
     }
     
     func setupUI() {
@@ -84,11 +93,6 @@ class CharacterDetailsViewController: UIViewController, CharacterDetailsViewProt
         view.addSubview(characterSpeciesLabel)
         view.addSubview(genderLabel)
         view.addSubview(characterGenderLabel)
-        
-        imageView.sd_setImage(with: URL(string: character?.image ?? ""))
-        characterStatusLabel.text = character?.status
-        characterSpeciesLabel.text = character?.species
-        characterGenderLabel.text = character?.gender
         
         imageView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
@@ -123,6 +127,5 @@ class CharacterDetailsViewController: UIViewController, CharacterDetailsViewProt
             make.top.equalTo(genderLabel.snp.bottom)
             make.leading.trailing.equalToSuperview().inset(20)
         }
-        
     }
 }

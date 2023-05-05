@@ -10,7 +10,11 @@ import SnapKit
 
 class CharactersViewController: UIViewController, CharactersViewProtocol, UITableViewDelegate, UITableViewDataSource {
     
-    lazy var presenter = CharactersPresenter(view: self)
+    enum Layout {
+        static var tableTopSpace: CGFloat = -54
+    }
+    
+    var presenter: CharactersPresenterProtocol!
     private var characters = [CharacterCellViewModel]()
     
     lazy private var charactersTableView: UITableView = {
@@ -35,7 +39,7 @@ class CharactersViewController: UIViewController, CharactersViewProtocol, UITabl
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         charactersTableView.frame = view.bounds
-//        charactersTableView.contentInset = UIEdgeInsets(top: -54, left: 0, bottom: 0, right: 0);
+//        charactersTableView.contentInset = UIEdgeInsets(top: Layout.tableTopSpace, left: 0, bottom: 0, right: 0);
         charactersTableView.separatorStyle = .none
     }
     

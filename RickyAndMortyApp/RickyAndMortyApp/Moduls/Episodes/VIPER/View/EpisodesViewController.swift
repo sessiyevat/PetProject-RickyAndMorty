@@ -8,13 +8,6 @@
 import Foundation
 import UIKit
 
-protocol EpisodesViewProtocol {
-    var presenter: EpisodesPresenterProtocol? { get set }
-    
-    func update(with episodes: [Episode])
-    func showCharacters(characters: [CharacterCellViewModel])
-}
-
 class EpisodesViewController: UIViewController, EpisodesViewProtocol, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var presenter: EpisodesPresenterProtocol?
@@ -43,6 +36,8 @@ class EpisodesViewController: UIViewController, EpisodesViewProtocol, UICollecti
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        presenter?.viewDidLoad()
         view.addSubview(collectionView)
         
         title = "Episodes"
@@ -64,11 +59,12 @@ class EpisodesViewController: UIViewController, EpisodesViewProtocol, UICollecti
         }
     }
     
-    func showCharacters(characters: [CharacterCellViewModel]) {
-//        let vc = CharactersAssembly.createModel(with: characters)
-//        let vc = EpisodeCharactersViewController(characters: characters)
-//        vc.navigationItem.largeTitleDisplayMode = .never
-//        navigationController?.pushViewController(vc, animated: true)
+    func showCharacters(characters: [Character]) {
+        DispatchQueue.main.async {
+            let vc = CharactersAssembly.createModel(with: characters)
+            vc.navigationItem.largeTitleDisplayMode = .never
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -84,9 +80,7 @@ class EpisodesViewController: UIViewController, EpisodesViewProtocol, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        
-        let characters = episodes[indexPath.row].characters
-        
-        presenter?.cellDidTaped(at: characters)        
+    
+        presenter?.cellDidTaped(at: indexPath)        
     }
 }

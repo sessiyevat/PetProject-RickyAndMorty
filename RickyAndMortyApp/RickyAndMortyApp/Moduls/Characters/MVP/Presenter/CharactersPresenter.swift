@@ -13,16 +13,29 @@ class CharactersPresenter: CharactersPresenterProtocol {
     weak var view: CharactersViewProtocol?
     var characters: [Character] = []
     
-    init(view: CharactersViewProtocol? = nil) {
+    init(view: CharactersViewProtocol, characters: [Character]? = nil) {
         self.view = view
+        self.characters = characters ?? []
     }
     
     func viewDidLoad() {
+        if !characters.isEmpty {
+            let viewModel = characters.compactMap( {
+                return CharacterCellViewModel(result: $0)
+                }
+            )
+            updateTableView(viewModel: viewModel)
+        } else {
+            getCharacters()
+        }
+    }
+    
+    private func getCharacters() {
         NetworkService.shared.getAllCharacters { [weak self] result in
             switch result {
             case .success(let characters):
                 self?.characters = characters.results
-                let viewModel = characters.results.compactMap( {  
+                let viewModel = characters.results.compactMap( {
                     return CharacterCellViewModel(result: $0)
                     }
                 )

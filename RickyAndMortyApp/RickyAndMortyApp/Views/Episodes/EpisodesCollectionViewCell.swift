@@ -24,7 +24,7 @@ class EpisodesCollectionViewCell: UICollectionViewCell {
        let label = UILabel()
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.font = .systemFont(ofSize: 14, weight: .bold)
         return label
     }()
     

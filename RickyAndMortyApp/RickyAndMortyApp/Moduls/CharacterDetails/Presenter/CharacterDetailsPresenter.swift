@@ -8,16 +8,17 @@
 import Foundation
 
 protocol CharacterDetailsPresenterProtocol {
-    
+    func viewDidLoad()
 }
 
 class CharacterDetailsPresenter: CharacterDetailsPresenterProtocol {
     
-    weak var view: CharacterDetailsViewProtocol?
-    var character: Character?
+    private weak var view: CharacterDetailsViewProtocol?
+    private var character: Character?
     
-    init(view: CharacterDetailsViewProtocol? = nil) {
+    init(view: CharacterDetailsViewProtocol, character: Character) {
         self.view = view
+        self.character = character
     }
     
     func viewDidLoad() {
