@@ -27,11 +27,10 @@ class EpisodesPresenter: EpisodesPresenterProtocol {
     
     func cellDidTaped(at indexPath: IndexPath){
         let episode = episodes[indexPath.row]
-        // Multithreading
         interactor?.getCharactersByEpisode(episode: episode)
     }
     
     func interactorFetchCharacters(characters: [Character]){
-        view?.showCharacters(characters: characters)
+        view?.showCharacters(characters: characters) //router
     }
 }

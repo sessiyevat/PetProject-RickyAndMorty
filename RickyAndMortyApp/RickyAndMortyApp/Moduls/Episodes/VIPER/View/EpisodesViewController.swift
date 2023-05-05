@@ -38,9 +38,9 @@ class EpisodesViewController: UIViewController, EpisodesViewProtocol, UICollecti
         super.viewDidLoad()
         
         presenter?.viewDidLoad()
-        view.addSubview(collectionView)
         
         title = "Episodes"
+        view.addSubview(collectionView)
         
         collectionView.delegate = self
         collectionView.dataSource = self

@@ -17,6 +17,8 @@ class CharactersViewController: UIViewController, CharactersViewProtocol, UITabl
     var presenter: CharactersPresenterProtocol!
     private var characters = [CharacterCellViewModel]()
     
+    var reachedEndOfItems = false
+    
     lazy private var charactersTableView: UITableView = {
         let table = UITableView()
         table.register(CharactersTableViewCell.self, forCellReuseIdentifier: CharactersTableViewCell.identifier)
@@ -52,6 +54,15 @@ class CharactersViewController: UIViewController, CharactersViewProtocol, UITabl
         self.charactersTableView.reloadData()
     }
     
+    func updateTableViewWith(newViewModel: [CharacterCellViewModel]?) {
+        guard let characters = newViewModel else {
+            print("error")
+            return
+        }
+        self.characters.append(contentsOf: characters)
+        self.charactersTableView.reloadData()
+    }
+    
     func showCharacter(character: Character) {
         let vc = CharacterDetailsAssembly.createModel(with: character)
         vc.navigationItem.largeTitleDisplayMode = .never
@@ -69,6 +80,11 @@ class CharactersViewController: UIViewController, CharactersViewProtocol, UITabl
             return UITableViewCell()
         }
         cell.configure(with: characters[indexPath.row])
+        
+        if indexPath.row == characters.count - 1 {
+            presenter?.getNextPageCharacters()
+        }
+        
         return cell
     }
     

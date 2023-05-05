@@ -8,7 +8,13 @@
 import Foundation
 
 struct CharactersResponse: Codable {
+    let info: Info
     let results: [Character]
+}
+
+struct Info: Codable {
+    let pages: Int
+    let next: String
 }
 
 struct Character: Codable {

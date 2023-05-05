@@ -9,4 +9,5 @@ import UIKit
 
 protocol CharactersViewProtocol : UIViewController, CharactersRouterProtocol {
     func updateTableView(viewModel: [CharacterCellViewModel]?)
+    func updateTableViewWith(newViewModel: [CharacterCellViewModel]?)
 }

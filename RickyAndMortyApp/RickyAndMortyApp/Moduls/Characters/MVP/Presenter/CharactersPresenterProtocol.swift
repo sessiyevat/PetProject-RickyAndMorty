@@ -10,5 +10,6 @@ import Foundation
 protocol CharactersPresenterProtocol {
     func cellDidTaped(at indexPath: IndexPath)
     func viewDidLoad()
+    func getNextPageCharacters()
 }
  

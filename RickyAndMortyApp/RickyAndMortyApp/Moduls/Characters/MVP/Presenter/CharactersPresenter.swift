@@ -12,6 +12,7 @@ class CharactersPresenter: CharactersPresenterProtocol {
     
     weak var view: CharactersViewProtocol?
     var characters: [Character] = []
+    var nextPageURL: String = ""
     
     init(view: CharactersViewProtocol, characters: [Character]? = nil) {
         self.view = view
@@ -34,6 +35,7 @@ class CharactersPresenter: CharactersPresenterProtocol {
         NetworkService.shared.getAllCharacters { [weak self] result in
             switch result {
             case .success(let characters):
+                self?.nextPageURL = characters.info.next
                 self?.characters = characters.results
                 let viewModel = characters.results.compactMap( {
                     return CharacterCellViewModel(result: $0)
@@ -57,5 +59,29 @@ class CharactersPresenter: CharactersPresenterProtocol {
         let character = characters[indexPath.row]
         
         view?.showCharacter(character: character)
+    }
+    
+    func getNextPageCharacters() {
+        if !nextPageURL.isEmpty {
+            NetworkService.shared.getNextPageCharacters(withURL: nextPageURL) { result in
+                switch result {
+                case .success(let characters):
+                    self.nextPageURL = characters.info.next
+                    self.characters.append(contentsOf: characters.results)
+                    let viewModel = characters.results.compactMap( {
+                        return CharacterCellViewModel(result: $0)
+                        }
+                    )
+                    self.updateWithNewViewModel(viewModel: viewModel)
+                case .failure(let error): print(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    func updateWithNewViewModel(viewModel: [CharacterCellViewModel]?){
+        DispatchQueue.main.async { [weak self] in
+            self?.view?.updateTableViewWith(newViewModel: viewModel)
+        }
     }
 }

@@ -19,7 +19,6 @@
 		6543A2EF2A02353C00EF6B6B /* EpisodesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6543A2EE2A02353B00EF6B6B /* EpisodesInteractor.swift */; };
 		6543A2F12A02355900EF6B6B /* EpisodesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6543A2F02A02355900EF6B6B /* EpisodesViewController.swift */; };
 		6543A2F32A02418F00EF6B6B /* EpisodesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6543A2F22A02418F00EF6B6B /* EpisodesCollectionViewCell.swift */; };
-		6543A2F52A0249AD00EF6B6B /* EpisodeCharactersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6543A2F42A0249AD00EF6B6B /* EpisodeCharactersViewController.swift */; };
 		6543A2FB2A027AC700EF6B6B /* CharacterDetailsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6543A2FA2A027AC700EF6B6B /* CharacterDetailsAssembly.swift */; };
 		6588772229FFACFD0050B9A2 /* MainAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6588772129FFACFD0050B9A2 /* MainAssembly.swift */; };
 		6588772429FFAD300050B9A2 /* CharactersPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6588772329FFAD300050B9A2 /* CharactersPresenterProtocol.swift */; };
@@ -34,9 +33,6 @@
 		65B751E52A03659500935DFC /* CharacterDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B751E42A03659500935DFC /* CharacterDetailsPresenter.swift */; };
 		65B751E72A03678500935DFC /* CharacterDetailsViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B751E62A03678500935DFC /* CharacterDetailsViewProtocol.swift */; };
 		65B751E92A036D1C00935DFC /* CharacterDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B751E82A036D1C00935DFC /* CharacterDetailsViewModel.swift */; };
-		65B751F02A037AA000935DFC /* EpisodeCharactersRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B751EF2A037AA000935DFC /* EpisodeCharactersRouter.swift */; };
-		65B751F22A037B4400935DFC /* EpisodeCharactersPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B751F12A037B4400935DFC /* EpisodeCharactersPresenter.swift */; };
-		65B751F42A037B5A00935DFC /* EpisodeCharactersInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B751F32A037B5A00935DFC /* EpisodeCharactersInteractor.swift */; };
 		65B751F72A037D5E00935DFC /* EpisodesViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B751F62A037D5E00935DFC /* EpisodesViewProtocol.swift */; };
 		65B751FA2A037DA200935DFC /* EpisodesInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B751F92A037DA200935DFC /* EpisodesInteractorProtocol.swift */; };
 		65B751FD2A037DD300935DFC /* EpisodesPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B751FC2A037DD300935DFC /* EpisodesPresenterProtocol.swift */; };
@@ -61,7 +57,6 @@
 		6543A2EE2A02353B00EF6B6B /* EpisodesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesInteractor.swift; sourceTree = "<group>"; };
 		6543A2F02A02355900EF6B6B /* EpisodesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesViewController.swift; sourceTree = "<group>"; };
 		6543A2F22A02418F00EF6B6B /* EpisodesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesCollectionViewCell.swift; sourceTree = "<group>"; };
-		6543A2F42A0249AD00EF6B6B /* EpisodeCharactersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCharactersViewController.swift; sourceTree = "<group>"; };
 		6543A2FA2A027AC700EF6B6B /* CharacterDetailsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsAssembly.swift; sourceTree = "<group>"; };
 		6588772129FFACFD0050B9A2 /* MainAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAssembly.swift; sourceTree = "<group>"; };
 		6588772329FFAD300050B9A2 /* CharactersPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersPresenterProtocol.swift; sourceTree = "<group>"; };
@@ -76,9 +71,6 @@
 		65B751E42A03659500935DFC /* CharacterDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsPresenter.swift; sourceTree = "<group>"; };
 		65B751E62A03678500935DFC /* CharacterDetailsViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewProtocol.swift; sourceTree = "<group>"; };
 		65B751E82A036D1C00935DFC /* CharacterDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewModel.swift; sourceTree = "<group>"; };
-		65B751EF2A037AA000935DFC /* EpisodeCharactersRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCharactersRouter.swift; sourceTree = "<group>"; };
-		65B751F12A037B4400935DFC /* EpisodeCharactersPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCharactersPresenter.swift; sourceTree = "<group>"; };
-		65B751F32A037B5A00935DFC /* EpisodeCharactersInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCharactersInteractor.swift; sourceTree = "<group>"; };
 		65B751F62A037D5E00935DFC /* EpisodesViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesViewProtocol.swift; sourceTree = "<group>"; };
 		65B751F92A037DA200935DFC /* EpisodesInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesInteractorProtocol.swift; sourceTree = "<group>"; };
 		65B751FC2A037DD300935DFC /* EpisodesPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesPresenterProtocol.swift; sourceTree = "<group>"; };
@@ -140,7 +132,6 @@
 				6543A2F82A026CAD00EF6B6B /* CharacterDetails */,
 				6543A2DD2A010D8C00EF6B6B /* Characters */,
 				6543A2DF2A010DA100EF6B6B /* Episodes */,
-				65B751EE2A0377FD00935DFC /* EpisodeCharacters */,
 				6543A2DE2A010D9600EF6B6B /* Locations */,
 			);
 			path = Moduls;
@@ -280,17 +271,6 @@
 				6543A2F22A02418F00EF6B6B /* EpisodesCollectionViewCell.swift */,
 			);
 			path = Episodes;
-			sourceTree = "<group>";
-		};
-		65B751EE2A0377FD00935DFC /* EpisodeCharacters */ = {
-			isa = PBXGroup;
-			children = (
-				6543A2F42A0249AD00EF6B6B /* EpisodeCharactersViewController.swift */,
-				65B751EF2A037AA000935DFC /* EpisodeCharactersRouter.swift */,
-				65B751F12A037B4400935DFC /* EpisodeCharactersPresenter.swift */,
-				65B751F32A037B5A00935DFC /* EpisodeCharactersInteractor.swift */,
-			);
-			path = EpisodeCharacters;
 			sourceTree = "<group>";
 		};
 		65B751F52A037D4A00935DFC /* View */ = {
@@ -493,7 +473,6 @@
 				6543A2F32A02418F00EF6B6B /* EpisodesCollectionViewCell.swift in Sources */,
 				6543A2ED2A0234A000EF6B6B /* EpisodesPresenter.swift in Sources */,
 				65BD59B629FEDCD90020638E /* AppDelegate.swift in Sources */,
-				6543A2F52A0249AD00EF6B6B /* EpisodeCharactersViewController.swift in Sources */,
 				65B751E92A036D1C00935DFC /* CharacterDetailsViewModel.swift in Sources */,
 				65B751E52A03659500935DFC /* CharacterDetailsPresenter.swift in Sources */,
 				6588772629FFAD480050B9A2 /* CharactersPresenter.swift in Sources */,
@@ -503,13 +482,10 @@
 				65B752002A037E0600935DFC /* EpisodesRouterProtocol.swift in Sources */,
 				65B751FA2A037DA200935DFC /* EpisodesInteractorProtocol.swift in Sources */,
 				65B751E72A03678500935DFC /* CharacterDetailsViewProtocol.swift in Sources */,
-				65B751F42A037B5A00935DFC /* EpisodeCharactersInteractor.swift in Sources */,
-				65B751F22A037B4400935DFC /* EpisodeCharactersPresenter.swift in Sources */,
 				6543A2EF2A02353C00EF6B6B /* EpisodesInteractor.swift in Sources */,
 				65B751FD2A037DD300935DFC /* EpisodesPresenterProtocol.swift in Sources */,
 				6588773029FFADF40050B9A2 /* CharacterCellViewModel.swift in Sources */,
 				6588772A29FFAD850050B9A2 /* CharactersViewProtocol.swift in Sources */,
-				65B751F02A037AA000935DFC /* EpisodeCharactersRouter.swift in Sources */,
 				6543A2E32A0114BD00EF6B6B /* NetworkService.swift in Sources */,
 				6543A2FB2A027AC700EF6B6B /* CharacterDetailsAssembly.swift in Sources */,
 				6588773729FFB5410050B9A2 /* LocationsViewController.swift in Sources */,
